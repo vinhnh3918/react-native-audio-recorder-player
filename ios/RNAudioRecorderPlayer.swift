@@ -431,4 +431,14 @@ class RNAudioRecorderPlayer: RCTEventEmitter, AVAudioRecorderDelegate {
         audioPlayer.volume = volume
         resolve(volume)
     }
+
+    @objc(setSpeed:resolve:rejecter:)
+    public func setSpeed(
+        speed: Float,
+        resolve: @escaping RCTPromiseResolveBlock,
+        rejecter reject: @escaping RCTPromiseRejectBlock
+    ) -> Void {
+        audioPlayer.rate = speed
+        resolve(speed)
+    }
 }
