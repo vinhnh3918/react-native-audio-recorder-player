@@ -185,9 +185,14 @@ class RNAudioRecorderPlayerModule(private val reactContext: ReactApplicationCont
             return
         }
 
-        val mSpeed = speed.toFloat()
-        mediaPlayer!!.setPlaybackParams(player.getPlaybackParams().setSpeed(mSpeed));
-        promise.resolve("set speed")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val params = PlaybackParams()
+            params.speed = speed.toFloat()
+            mediaPlayer!!.playbackParams = params
+            promise.resolve("set speed")
+            return
+        }
+        promise.reject("setSpeed", "build version is invalid.")
     }
 
     @ReactMethod
