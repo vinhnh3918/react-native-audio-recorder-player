@@ -438,7 +438,7 @@ class RNAudioRecorderPlayer: RCTEventEmitter, AVAudioRecorderDelegate {
         resolve: @escaping RCTPromiseResolveBlock,
         rejecter reject: @escaping RCTPromiseRejectBlock
     ) -> Void {
-        audioPlayer.rate = speed
+        audioPlayer.playImmediately(atRate: speed)
         resolve(speed)
     }
 }
